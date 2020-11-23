@@ -1,0 +1,136 @@
+/*  UNIVERSIDAD TÉCNICA DEL NORTE
+ *  FACULTAD DE INGENIERÍA EN CIENCIAS APLICADAS
+ *  CARRERA DE INGENIERÍA EN TELECOMUNICACIONES
+ *  SISTEMAS EMBEBIDOS 
+ *  
+ *  Nombre: Carolina Quinatoa 
+ *  Fecha: 23 de Noviembre del 2020
+ * Realizar un programa que al presionar el pulsador cada vez
+ * Se visualiza a cada número primo hasta el 99
+ * 
+ */
+
+//Definición de pines 
+#define A 13 //DECODIFICADOR
+#define B 12 //DECODIFICADOR
+#define C 11 //DECODIFICADOR
+#define D 10 //DECODIFICADOR
+#define boton 7 // PULSADOR
+#define unidades 6 
+#define decenas 8
+
+int uni;// UNIDADES
+int dec;// DECENAS
+int cont=1; // CONTADOR
+int k=0;// VARIABLE DE CICLO FOR
+int primo; //VARIABLE DE NÚMERO PRIMO
+
+void setup() {
+  //DEFINICIÓN DE PINES DE SALIDA
+pinMode(A,OUTPUT);
+pinMode(B,OUTPUT);
+pinMode(C,OUTPUT);
+pinMode(D,OUTPUT);
+
+  //DEFINICIÓN DE PINES DE ENTRADA
+pinMode(boton,INPUT);
+pinMode(unidades,OUTPUT);
+pinMode(decenas,OUTPUT);
+
+}
+
+void loop() {
+
+   if(digitalRead(boton)==HIGH){
+    if (cont < 99) { //Límite de conteo hasta 99
+    cont++; //Aumento de la variable cont
+          primo = 1; // Asignación de valor 1 a la variable primo
+          for(k=2;k<cont;k++){ //Ciclo for iniciado en 2 
+            if(cont%k==0)// Resolución matemática para obtener número primos
+            {  
+           primo = 0; // Asignación de valor 0 a la variable primo
+            }
+        }
+           if(primo==1){
+                dec=cont/10; // Obtención de valor para decenas
+                uni=cont-(dec*10); //Obtención de valor para unidades
+                      
+                      digitalWrite(unidades,LOW);
+                      digitalWrite(decenas,HIGH);
+                      contador(dec);
+                      delay(500);
+
+                      digitalWrite(unidades,HIGH);
+                      digitalWrite(decenas,LOW);
+                      contador(uni);
+                      delay(500);
+        }
+      }                              
+    }
+  }
+
+ //Representación en el display
+void contador (int i){
+  switch(i){
+      case 0:
+      digitalWrite(A,LOW);
+      digitalWrite(B,LOW);
+      digitalWrite(C,LOW);
+      digitalWrite(D,LOW);
+      break;
+      case 1:
+      digitalWrite(A,HIGH);
+      digitalWrite(B,LOW);
+      digitalWrite(C,LOW);
+      digitalWrite(D,LOW);
+      break;
+      case 2:
+      digitalWrite(A,LOW);
+      digitalWrite(B,HIGH);
+      digitalWrite(C,LOW);
+      digitalWrite(D,LOW);
+      break;
+      case 3:
+      digitalWrite(A,HIGH);
+      digitalWrite(B,HIGH);
+      digitalWrite(C,LOW);
+      digitalWrite(D,LOW);    
+      break;
+      case 4:
+      digitalWrite(A,LOW);
+      digitalWrite(B,LOW);
+      digitalWrite(C,HIGH);
+      digitalWrite(D,LOW);    
+      break;
+      case 5:
+      digitalWrite(A,HIGH);
+      digitalWrite(B,LOW);
+      digitalWrite(C,HIGH);
+      digitalWrite(D,LOW);    
+      break;
+      case 6:
+      digitalWrite(A,LOW);
+      digitalWrite(B,HIGH);
+      digitalWrite(C,HIGH);
+      digitalWrite(D,LOW);    
+      break;
+      case 7:
+      digitalWrite(A,HIGH);
+      digitalWrite(B,HIGH);
+      digitalWrite(C,HIGH);
+      digitalWrite(D,LOW);    
+      break;
+      case 8:
+      digitalWrite(A,LOW);
+      digitalWrite(B,LOW);
+      digitalWrite(C,LOW);
+      digitalWrite(D,HIGH);    
+      break;
+      case 9:
+      digitalWrite(A,HIGH);
+      digitalWrite(B,LOW);
+      digitalWrite(C,LOW);
+      digitalWrite(D,HIGH);    
+      break;
+      }
+  }
