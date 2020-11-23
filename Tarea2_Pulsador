@@ -22,7 +22,7 @@
 int uni;// UNIDADES
 int dec;// DECENAS
 int cont=1; // CONTADOR
-int k=0;// VARIABLE DE CICLO FOR
+int k;// VARIABLE DE CICLO FOR
 int primo; //VARIABLE DE NÚMERO PRIMO
 
 void setup() {
